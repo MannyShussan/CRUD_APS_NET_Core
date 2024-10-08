@@ -1,0 +1,30 @@
+﻿@model AppMvcFuncional.Models.Anotacao
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Deletar</h1>
+
+<h3>Confira antes de deletar</h3>
+<div>
+
+    <div class="card bg-dark bg-gradient m-2 rounded-2" style="width: 18rem;">
+        <div class="card-body">
+            <div class="d-flex flex-row flex-nowrap justify-content-between">
+                <h5 class="card-title">@Html.DisplayFor(model => model.Titulo)</h5>
+            </div>
+            <h6 class="card-subtitle mb-2 fst-italic" style="color: #C0C0C0;">@Html.DisplayFor(model => model.SubTitulo)</h6>
+            <p class="card-text">@Html.DisplayFor(model => model.Descricao)</p>
+        </div>
+        <div class="card-footer d-flex flex-row flex-nowrap justify-content-between align-items-center">
+            <small class="fw-light" style="font-size:.7rem;">@Html.DisplayFor(model => model.DataDeCriacao)</small>
+        </div>
+    <form asp-action="Delete" class="mx-3 mb-3 d-flex flex-row justify-content-between">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Deletar" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-primary">Cancelar</a>
+    </form>
+    </div>
+
+</div>

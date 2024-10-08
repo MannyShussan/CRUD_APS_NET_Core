@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AppMvcFuncional.Models.Anotacao>
+
+@{
+    ViewData["Title"] = "Lixeira";
+    string[] _prioridade = ["Muito baixa", "Baixa", "Normal", "Alta", "Muito alta", "Emergencial"];
+    string[] cor = ["#FFFFFF", "#00C0FF", "#00FFD0", "#FFFF00", "#FF8F00", "#FF3000"];
+}
+
+<h1>Lixeira</h1>
+
+<div class="d-flex flex-row flex-lg-wrap align-items-md-stretch">
+    @foreach (var item in Model)
+    {
+        int Id = item.Id;
+
+        <div class="card bg-gradient m-2 rounded-2" style="width: 18rem; background: var(--bs-tertiary-bg);">
+            <div class="card-body">
+                <div class="d-flex flex-row flex-nowrap justify-content-between mb-1">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
+                    <span class="badge rounded-3 p-2 bg-gradient text-black" style="background: @cor[item.Prioridade]">@Html.DisplayFor(modelItem => _prioridade[item.Prioridade])</span>
+                </div>
+                <h6 class="card-subtitle mb-4 fst-italic" style="color: #C0C0C0;">@Html.DisplayFor(modelItem => item.SubTitulo)</h6>
+                <p class="card-text text-wrap">@Html.DisplayFor(modelItem => item.Descricao).</p>
+            </div>
+            <div class="card-footer d-flex flex-row flex-nowrap justify-content-between align-items-center">
+                <form asp-action="Restaurar" class="d-flex flex-row flex-nowrap gap-2">
+                    <input type="hidden" asp-for="@Id"/>
+                    <input type="submit" value="Restaurar"  class="btn py-1 px-2 btn-info with-tooltip" data-tooltip="Restaurar"/>
+                </form>
+                <div class="d-flex flex-column">
+                    <small class="fw-light" style="font-size:.7rem;">Deletado no dia: @Html.DisplayFor(modelItem => item.DataExclusao)</small>
+                </div>
+            </div>
+        </div>
+
+
+
+    }
+</div>
